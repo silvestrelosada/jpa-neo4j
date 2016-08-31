@@ -1,0 +1,15 @@
+version: '2'
+services:
+    jpa_neo4j_test-app:
+        image: jpa_neo4j_test
+        external_links:
+            - jpa_neo4j_test-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/jpa_neo4j_test?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    jpa_neo4j_test-mysql:
+        extends:
+            file: mysql.yml
+            service: jpa_neo4j_test-mysql
