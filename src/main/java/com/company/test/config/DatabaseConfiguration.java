@@ -123,27 +123,6 @@ public class DatabaseConfiguration {
     public Hibernate4Module hibernate4Module() {
         return new Hibernate4Module();
     }
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-//    	LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-//       em.setDataSource(dataSource);
-//       em.setPackagesToScan(new String[] { "com.company.test.repository.model" });
-//  
-//       JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//       em.setJpaVendorAdapter(vendorAdapter);
-////       em.setJpaProperties(additionalProperties());
-//  
-//       return em;
-//    }
-    @Bean(name = "transactionManager")
-	@ConditionalOnBean(name = "entityManagerFactory")
-    public PlatformTransactionManager transactionManager(
-			EntityManagerFactory entityManagerFactory ) {
 
-        JpaTransactionManager tm = 
-            new JpaTransactionManager();
-            tm.setEntityManagerFactory(entityManagerFactory);
-            tm.setDataSource(dataSource);
-        return tm;
-    }
+
 }
